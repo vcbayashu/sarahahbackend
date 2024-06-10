@@ -4,7 +4,7 @@ const app = express();
 const MESSAGE_MODAL = require("./models/Message");
 app.use(express.json());
 require("dotenv").config();
-
+const path = require("path");
 app.post("/api/sendmessage", async (req, res) => {
   try {
     const { title, message } = req.body;
@@ -29,5 +29,16 @@ app.get("/api/messages", async (req, res) => {
 });
 
 const port = process.env.PORT || 5000;
+app.use(express.static("client/build"));
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.resolve(__dirname + "/client/build/index.html"),
+    function (err) {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+});
 connectDB();
 app.listen(port, () => console.log("Server is running at Port", port));
