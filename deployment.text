@@ -23,3 +23,7 @@
 10. Make sure your ENVs are defined properly on deployment platform
 
 Tip: Please check if your Web app is running properly at your local backend port number before deployment
+
+
+While updating at frontend, make sure to recreate build file and paste in backend by removing the old build. After doing this, push the code again at backend repo.
+And then deploy again on render
